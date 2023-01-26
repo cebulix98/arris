@@ -6,6 +6,7 @@ namespace App\Listeners;
 
 use Illuminate\Auth\Events;
 use App\Models\AuthenticationLog;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,7 +49,7 @@ class AuthenticationLogSubscriber
         ]);
     }
 
-    public function subscribe(Event $events)
+    public function subscribe(Dispatcher $events): array
     {
         return [
             Events\Login::class => 'loginSuccessful',
