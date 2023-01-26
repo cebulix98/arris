@@ -11,6 +11,7 @@ class AuthorizationLog extends Model
 
     protected $fillable = [
         'action',
-        'email'
-    ]
+        'email',
+        'ip'
+    ];
 }

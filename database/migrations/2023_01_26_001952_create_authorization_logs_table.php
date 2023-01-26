@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('authorization_logs', function (Blueprint $table) {
             $table->string('action');
             $table->string('email');
+            $table->string('ip', 15);
             $table->timestamps();
         });
     }
