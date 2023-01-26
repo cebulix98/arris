@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('authorization_logs', function (Blueprint $table) {
-            $table->string('action');
+        Schema::create('authentication_logs', function (Blueprint $table) {
+            $table->string('event');
             $table->string('email');
             $table->string('ip', 15);
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authorization_logs');
+        Schema::dropIfExists('authentication_logs');
     }
 };
