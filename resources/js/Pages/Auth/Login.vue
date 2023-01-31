@@ -40,7 +40,7 @@ const submit = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" :value="$t('form.email')" />
         <TextInput
           id="email"
           v-model="form.email"
@@ -53,7 +53,7 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" :value="$t('form.password')" />
         <TextInput
           id="password"
           v-model="form.password"
@@ -68,7 +68,7 @@ const submit = () => {
       <div class="block mt-4">
         <label class="flex items-center">
           <Checkbox v-model:checked="form.remember" name="remember" />
-          <span class="ml-2 text-sm text-gray-600">Remember me</span>
+          <span class="ml-2 text-sm text-gray-600">{{ $t('form.rememberMe') }}</span>
         </label>
       </div>
 
@@ -78,17 +78,17 @@ const submit = () => {
           :href="route('password.request')"
           class="underline text-sm mr-4 text-gray-600 hover:text-gray-900"
         >
-          Forgot your password?
+          {{ $t("form.forgotPassword") }}
         </Link>
         <Link
           :href="route('register')"
           class="underline text-sm text-gray-600 hover:text-gray-900"
         >
-          Don't have an account?
+          {{ $t('form.noAccount') }}
         </Link>
       </div><div class="flex items-center justify-end mt-4">
         <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-            Log in
+            {{ $t('form.login') }}
         </PrimaryButton>
     </div>
     </form>

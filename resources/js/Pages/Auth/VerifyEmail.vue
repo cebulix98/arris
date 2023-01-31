@@ -22,17 +22,17 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
     <AuthenticationCard>
         <div class="mb-4 text-sm text-gray-600">
-            Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+            {{ $t('verifyEmail.text') }}
         </div>
 
         <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">
-            A new verification link has been sent to the email address you provided in your profile settings.
+            {{ $t('verifyEmail.info') }}
         </div>
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Resend Verification Email
+                    {{ $t('verifyEmail.button') }}
                 </PrimaryButton>
 
                 <div>
@@ -40,7 +40,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         :href="route('profile.show')"
                         class="underline text-sm text-gray-600 hover:text-gray-900"
                     >
-                        Edit Profile</Link>
+                        {{ $t('verifyEmail.editProfile') }}</Link>
 
                     <Link
                         :href="route('logout')"
@@ -48,7 +48,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         as="button"
                         class="underline text-sm text-gray-600 hover:text-gray-900 ml-2"
                     >
-                        Log Out
+                        {{ $t('verifyEmail.logOut') }}
                     </Link>
                 </div>
             </div>

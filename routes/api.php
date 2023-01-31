@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('tasks/description/{id}', [TaskController::class, 'getDescription']);
+    Route::get('tasks/filtered', [TaskController::class, 'filterTasks']);
+    Route::patch('tasks/toggle-status/{id}', [TaskController::class, 'toggleStatus']);
 });

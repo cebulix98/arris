@@ -1,0 +1,36 @@
+{
+    "form.name": "name",
+    "form.email": "email",
+    "form.password": "password",
+    "form.passwordConfirm": "confirm Password",
+    "form.login": "log in",
+    "form.register": "register",
+    "form.forgotPassword": "forgot your password?",
+    "form.noAccount": "don't have an account?",
+    "form.rememberMe": "remember me",
+    "form.alreadyRegistered": "already registered?",
+
+    "passwordForgot.text": "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+    "passwordForgot.button": "Email Password Reset Link",
+
+    "passwordReset.button": "Reset Password",
+
+    "verifyEmail.text": "Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.",
+    "verifyEmail.info": "A new verification link has been sent to the email address you provided in your profile settings.",
+    "verifyEmail.button": "Resend Verification Email",
+    "verifyEmail.editProfile": "Edit Profile",
+    "verifyEmail.logOut": "Log Out",
+
+    "tasks.filter.name": "name",
+    "tasks.filter.deadlineFrom": "deadline from",
+    "tasks.filter.deadlineTo": "deadline to",
+    "tasks.table.name": "name",
+    "tasks.table.deadline": "deadline",
+    "tasks.table.status": "status",
+
+    "filter.button": "filter",
+    "tasks.toggleStatus.confirmation": "Do you want to change status of this task?",
+
+    "navBar.main": "Show tasks",
+    "navBar.add": "Add task"
+}
