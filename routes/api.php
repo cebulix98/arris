@@ -20,7 +20,4 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('tasks/description/{id}', [TaskController::class, 'getDescription']);
-    Route::get('tasks/filtered', [TaskController::class, 'filterTasks']);
-    Route::patch('tasks/toggle-status/{id}', [TaskController::class, 'toggleStatus']);
 });

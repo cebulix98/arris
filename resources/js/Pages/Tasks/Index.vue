@@ -9,6 +9,7 @@
                 <div>{{ $t("tasks.table.name") }}</div>
                 <div>{{ $t("tasks.table.deadline") }}</div>
                 <div>{{ $t("tasks.table.status") }}</div>
+                <div></div>
             </div>
             <div
                 v-for="(task, key) in tasks"
@@ -27,6 +28,7 @@
                 <div @click="toggleStatus(task.id, key)" class="clickable">
                     {{ completed(task.completed) }}
                 </div>
+                <div class=""><Link :href="route('tasks.edit', task.id)">{{ $t('tasks.list.edit') }}</Link></div>
                 <div class="task-description" v-if="task.description">
                     {{ task.description }}
                 </div>
@@ -38,13 +40,15 @@
 <script>
 import AppLayout2 from "@/Layouts/AppLayout2.vue";
 import CustomFilters from "@/Components/CustomFilters.vue";
+import { Link } from "@inertiajs/vue3";
 
 export default {
     name: "Index",
     components: {
-        AppLayout2,
-        CustomFilters,
-    },
+    AppLayout2,
+    CustomFilters,
+    Link
+},
     props: {
         inertiaTasks: { type: Array },
     },
@@ -134,7 +138,7 @@ export default {
 
 <style scoped>
 .tasks-list {
-    margin: 0 30%;
+    margin: 0 20%;
     display: grid;
     grid-template-columns: 100%;
     grid-auto-rows: max-content;
@@ -144,7 +148,7 @@ export default {
 .task-list-item,
 .tasks-list-headers {
     display: grid;
-    grid-template-columns: 2fr 2fr 120px;
+    grid-template-columns: 2fr 2fr 120px 120px;
     text-align: center;
     border-bottom: 1px solid #999;
 }
@@ -152,7 +156,7 @@ export default {
     background: #d0e4f5;
 }
 .task-description {
-    grid-column: 1/4;
+    grid-column: 1/5;
     border-top: 1px solid #999;
 }
 </style>

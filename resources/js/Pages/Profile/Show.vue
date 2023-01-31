@@ -1,5 +1,5 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+import AppLayout2 from '@/Layouts/AppLayout2.vue';
 import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue';
 import SectionBorder from '@/Components/SectionBorder.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
@@ -12,10 +12,10 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <AppLayout2>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
+                {{ $t('profile.header') }}
             </h2>
         </template>
 
@@ -32,13 +32,7 @@ defineProps({
 
                     <SectionBorder />
                 </div>
-
-                <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
-                    <SectionBorder />
-
-                    <DeleteUserForm class="mt-10 sm:mt-0" />
-                </template>
             </div>
         </div>
-    </AppLayout>
+    </AppLayout2>
 </template>

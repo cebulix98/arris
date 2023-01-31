@@ -1,48 +1,51 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use Illuminate\Http\Client\Request as ClientRequest;
-use Illuminate\Http\JsonResponse;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Patch;
+use Spatie\RouteAttributes\Attributes\Resource;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Illuminate\Http\Client\Request as ClientRequest;
+use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 
+
+
+#[Middleware([
+    'auth:sanctum',
+    AuthenticateSession::class,
+    'verified'
+])]
+#[Resource(
+    resource: 'tasks',
+    parameters: ['tasks' => 'task:id'],
+    except: ['destroy', 'show'],
+)]
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): \Inertia\Response
     {
         return Inertia::render('Tasks/Index', [
             'inertiaTasks' => Auth::user()->tasks()->select(['id', 'name', 'deadline', 'completed'])->getResults()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Inertia\Response
     {
         return Inertia::render('Tasks/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): Response
     {
 
         $request->validated();
@@ -54,16 +57,10 @@ class TaskController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return Inertia::location(route('tasks.index'));
+        return Inertia::location('Tasks/Index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
+    public function edit(Task $task): \Inertia\Response
     {
         $this->authorize('update', $task);
 
@@ -72,16 +69,11 @@ class TaskController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTaskRequest  $request
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task): Response
     {
         $this->authorize('update', $task);
+
+        $request->validated();
 
         $task->update([
             'name' => $request->name,
@@ -89,19 +81,22 @@ class TaskController extends Controller
             'deadline' => $request->deadline
         ]);
 
-        return Inertia::location(route('tasks.index'));
+        return Inertia::location('Tasks/Index');
     }
 
+    #[Get('api/tasks/description/{id}', name: 'tasks.description')]
     public function getDescription(Request $request, int $id): JsonResponse
     {
-        return response()->json(['description' => Task::find($id)->description]);
+        return new JsonResponse(['description' => Task::find($id)->description]);
     }
 
+    #[Patch('api/tasks/toggle-status/{id}', name: 'tasks.toggleStatus')]
     public function toggleStatus(Request $request, int $id): JsonResponse
     {
         return new JsonResponse(Task::find($id)->toggleStatus()->select(['id', 'name', 'deadline', 'completed'])->find($id));
     }
 
+    #[Get('api/tasks/filtered', name: 'tasks.filtered')]
     public function filterTasks(Request $request): JsonResponse
     {
         $tasks = new Task();

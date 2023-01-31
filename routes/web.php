@@ -1,14 +1,9 @@
 <?php
 
-use App\Http\Controllers\TaskController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::resource('/tasks', TaskController::class);
+Route::get('/', function() {
+    return redirect('login');
 });

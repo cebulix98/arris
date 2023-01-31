@@ -1,28 +1,27 @@
 <template>
     <AppLayout2>
         <form @submit.prevent="form.put(route('tasks.update', task.id))">
-            <input v-model="form.name" type="text" id="name" />
+            <label for="name">{{ $t('tasks.create.name') }}</label> <br />
+            <input v-model="form.name" type="text" id="name" /> <br />
             <div v-if="form.errors.name">{{ form.errors.name }}</div>
-
+            <label for="deadline">{{ $t('tasks.create.deadline') }}</label> <br />
             <input
                 v-model="form.deadline"
                 type="datetime-local"
                 id="deadline"
-                step="1"
-            />
+            /> <br />
             <div v-if="form.errors.deadline">{{ form.errors.deadline }}</div>
-
+            <label for="description">{{ $t('tasks.create.description') }}</label> <br />
             <textarea
                 v-model="form.description"
                 ows="5"
                 cols="10"
                 id="description"
-            ></textarea>
+            ></textarea> <br />
             <div v-if="form.errors.description">
                 {{ form.errors.description }}
             </div>
-
-            <button type="submit">{{ $t("task.create.button") }}</button>
+            <button type="submit">{{ $t('tasks.create.button') }}</button>
         </form>
     </AppLayout2>
 </template>

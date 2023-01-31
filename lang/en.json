@@ -24,13 +24,42 @@
     "tasks.filter.name": "name",
     "tasks.filter.deadlineFrom": "deadline from",
     "tasks.filter.deadlineTo": "deadline to",
+    "tasks.filter.sorting": "sort by",
     "tasks.table.name": "name",
     "tasks.table.deadline": "deadline",
     "tasks.table.status": "status",
+    "tasks.sorting.nameAsc": "Name Ascending",
+    "tasks.sorting.nameDesc": "Name Descending",
+    "tasks.sorting.deadlineAsc": "Deadline Ascending",
+    "tasks.sorting.deadlineDesc": "Deadline Descending",
+    "tasks.list.edit": "edit",
 
     "filter.button": "filter",
     "tasks.toggleStatus.confirmation": "Do you want to change status of this task?",
 
     "navBar.main": "Show tasks",
-    "navBar.add": "Add task"
+    "navBar.add": "Add task",
+    "navBar.logout": "Log out",
+    "navBar.profile": "Profile",
+    "navBar.manage": "Manage Account",
+
+    "tasks.create.name": "name",
+    "tasks.create.deadline": "deadline",
+    "tasks.create.description": "description",
+    "tasks.create.button": "create task",
+
+    "profile.header": "Profile",
+    "profile.information.title": "Profile Information",
+    "profile.information.description": "Update your account's profile information and email address.",
+    "profile.information.notVerified.text": "Your email address is unverified.",
+    "profile.information.verificationResend": "Click here to re-send the verification email.",
+    "profile.information.verificationLinkSent": "A new verification link has been sent to your email address.",
+    "profile.saved": "Saved.",
+    "profile.save": "Save",
+
+    "profile.password.title": "Update Password",
+    "profile.password.description": "Ensure your account is using a long, random password to stay secure.",
+    "profile.password.current": "Current Password",
+    "profile.password.new": "New Password",
+    "profile.password.confirm": "Confirm Password"
 }
